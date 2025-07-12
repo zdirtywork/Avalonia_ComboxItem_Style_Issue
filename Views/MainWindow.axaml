@@ -28,6 +28,14 @@
                   SelectedItem="{Binding Category}"
                   HorizontalAlignment="Stretch">
 
+            <!-- 这段代码可以修复ComboBoxItem的宽度问题，但在Windows 11上没用
+            <ComboBox.ItemContainerTheme>
+                <ControlTheme TargetType="ComboBoxItem" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                </ControlTheme>
+            </ComboBox.ItemContainerTheme>
+            -->
+
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock
