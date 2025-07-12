@@ -1,0 +1,40 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvaloniaComboxItemStyleIssue.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Width="300" Height="350"
+        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="350"
+        x:Class="AvaloniaComboxItemStyleIssue.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AvaloniaApplication1"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <vm:CategoryNameConvertor x:Key="CategoryNameConverter" />
+    </Window.Resources>
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <Grid Margin="10">
+        <!-- Avalonia 11.3.2 -->
+        <!-- Windows 11 中，使用ItemTemplate创建的ComboBoxItem的宽度不会与其所属的Combox一样宽 -->
+        <ComboBox ItemsSource="{Binding Categories}"
+                  SelectedItem="{Binding Category}"
+                  HorizontalAlignment="Stretch">
+
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock
+                        Text="{Binding Converter={StaticResource CategoryNameConverter}}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+    </Grid>
+
+</Window>
